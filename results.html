@@ -11,6 +11,12 @@
         <h1>🍹🏄‍♀️ Contest Results 🏄‍♀️🍹</h1>
         <div>
             <h2 id="status-message"></h2>
+            <form method=GET action="results.html">
+                <div>
+                    <label for=verify>Verify secret code:</label>
+                    <input type=text id=verify name=verify>
+                </div>
+            </form>
             <h3 id="sub-message"></h3>
             <img src="assets/images/aruba.jpg" class="mini-image">
             <h4 id="small-print"></h4>
@@ -35,6 +41,7 @@
         let address = urlParams.get('address') 
         let cityStateZip = `${urlParams.get('city')}, ${urlParams.get('state')} ${urlParams.get('zip')}`
         let emailMessage = document.createElement('p')
+        let password = urlParams.get('password')
         
         // Fill the page with the user's personal information
         document.getElementById('disclaimer').textContent = `Thank you, ${name}, for entering our once in a lifetime vacation contest!`
@@ -56,10 +63,13 @@
 
         // Change display based on whether they won or not
         if (winner) {
-            document.getElementById('status-message').textContent = `Congrats, ${name}, YOU WON!`
+            document.getElementById('status-message').textContent = `Congrats, ${name}, YOU WON! Please verify your secret code below.`
             document.getElementById('sub-message').textContent = `PACK YOUR BAGS, YOU'RE GOING TO ${choice.toUpperCase()}!`
             document.getElementById('status-message').style.color = color || 'crimson'
             document.getElementById('small-print').textContent = `Extras (${extras.join(', ')}) must be requested upon arrival at your destination`
+            // if (password == placeholder) {
+                //do something
+           //  }
         }
         else {
             document.getElementById('status-message').textContent = `Sorry, ${name}, You Didn't Win This Time!`
